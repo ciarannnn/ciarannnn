@@ -336,12 +336,14 @@ html[data-theme="dark"] .contact-form { background: #111c2e; }
     max-width: 100%;
     margin: 24px 0 0;
     text-align: left;
-  .mobile-name-break {
-    display: block;
+    
   }
+  
+  .contact-grid { 
+    gap: 55px; 
   }
-  .contact-grid { gap: 55px; }
 }
+
 @media (max-width: 620px) {
   .container { width: min(100% - 32px, 1120px); }
   .nav { min-height: 66px; }
@@ -362,10 +364,6 @@ html[data-theme="dark"] .contact-form { background: #111c2e; }
   .note-top { right: -8px; }
   .note-bottom { left: -12px; }
   .footer-inner { flex-direction: column; }
-}
-
-.mobile-name-break {
-  display: none;
 }
 
 .arrow {
@@ -394,3 +392,10 @@ html[data-theme="dark"] .theme-icon {
 
 .skill-examples { margin: 18px 0 0; padding-left: 18px; color: var(--muted); font-size: .9rem; }
 .skill-examples li { margin-bottom: 6px; }
+
+.update-plan { margin-top: 40px; padding: 24px 28px; border: 1px solid var(--line); background: var(--card); }
+.update-plan ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: .9rem; }
+.update-plan li { 
+  margin-bottom: 6px; 
+  
+}
