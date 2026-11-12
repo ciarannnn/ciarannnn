@@ -13,7 +13,7 @@ function setTheme(theme) {
     themeToggle.setAttribute('aria-pressed', String(isDark));
     themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
   }
-  if (themeIcon) themeIcon.textContent = isDark ? '☀' : '☾';
+  
   if (themeToggle) themeToggle.querySelector('.theme-label').textContent = isDark ? 'Light mode' : 'Dark mode';
 }
 
@@ -59,8 +59,6 @@ if (contactForm) {
       formNote.textContent = 'Please complete all fields before sending.';
       return;
     }
-
-    // This static site opens the visitor’s email app instead of using a backend.
     const recipient = 'aljongabriellanuzo1@gmail.com';
     const subject = encodeURIComponent(`Portfolio message from ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
