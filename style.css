@@ -885,3 +885,8 @@ html[data-theme="dark"] .contact-form {
     flex-direction: column;
   }
 }
+
+.trap-field {
+  position: absolute;
+  left: -9999px;
+}

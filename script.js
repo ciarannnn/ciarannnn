@@ -49,20 +49,30 @@ const contactForm = document.querySelector('#contact-form');
 const formNote = document.querySelector('#form-note');
 
 if (contactForm) {
-  contactForm.addEventListener('submit', (event) => {
+  contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const name = document.querySelector('#name').value.trim();
-    const email = document.querySelector('#email').value.trim();
-    const message = document.querySelector('#message').value.trim();
+    const submitButton = contactForm.querySelector('button[type="submit"]');
 
-    if (!name || !email || !message) {
-      formNote.textContent = 'Please complete all fields before sending.';
-      return;
+    submitButton.disabled = true;
+    formNote.textContent = 'Sending your message...';
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' }
+      });
+
+      if (response.ok) {
+        formNote.textContent = 'Thank you! Your message has been sent.';
+        contactForm.reset();
+      } else {
+        formNote.textContent = 'Sorry, something went wrong. Please try again or email me directly.';
+      }
+    } catch (error) {
+      formNote.textContent = 'Network error. Please check your connection and try again.';
+    } finally {
+      submitButton.disabled = false;
     }
-    const recipient = 'aljongabriellanuzo1@gmail.com';
-    const subject = encodeURIComponent(`Portfolio message from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-    formNote.textContent = 'Opening your email app...';
   });
 }
