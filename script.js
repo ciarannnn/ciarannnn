@@ -76,3 +76,28 @@ if (contactForm) {
     }
   });
 }
+
+const carousel = document.querySelector('.project-carousel');
+
+if (carousel) {
+  const slides = [...carousel.querySelectorAll('.project-slide')];
+  const counter = carousel.querySelector('.carousel-count');
+  let current = 0;
+
+  function showSlide(number) {
+    current = (number + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
+    counter.textContent = `${current + 1} / ${slides.length}`;
+  }
+
+  carousel.querySelectorAll('.carousel-btn').forEach((button) => {
+    button.addEventListener('click', () => showSlide(current + Number(button.dataset.dir)));
+  });
+
+  let startX = 0;
+  carousel.addEventListener('touchstart', (e) => { startX = e.changedTouches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', (e) => {
+    const distance = e.changedTouches[0].clientX - startX;
+    if (Math.abs(distance) > 50) showSlide(current + (distance < 0 ? 1 : -1));
+  });
+}
