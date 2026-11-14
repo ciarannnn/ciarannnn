@@ -170,7 +170,11 @@ h2 em {
   color: var(--white);
   background: var(--blue);
   border-radius: 10px 10px 10px 2px;
-  font-size: 0.7rem;
+}
+
+.brand-mark svg {
+  width: 18px;
+  height: 18px;
 }
 
 .nav-links {
